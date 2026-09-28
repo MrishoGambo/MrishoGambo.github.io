@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Mrisho Gambo Secondary School</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-carousel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-carousel img.active {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
 
@@ -36,7 +58,12 @@
   </nav>
 
   <div class="hero">
-    <img src="form 4.jpeg" alt="Mrisho Gambo Secondary School campus">
+    <div class="hero-carousel">
+      <img src="form 1.jpeg" alt="Mrisho Gambo Secondary School campus" class="active">
+      <img src="form 2.jpeg" alt="Mrisho Gambo Secondary School campus">
+      <img src="form 3.jpeg" alt="Mrisho Gambo Secondary School campus">
+      <img src="form 4.jpeg" alt="Mrisho Gambo Secondary School campus">
+    </div>
     <div class="hero-copy">
       <span class="eyebrow">Educate · Inspire · Innovate</span>
       <h1>A school built on discipline, curiosity and character.</h1>
@@ -117,5 +144,17 @@
   </footer>
 
   <script src="site.js" defer></script>
+  <script>
+    const images = document.querySelectorAll('.hero-carousel img');
+    let currentImageIndex = 0;
+
+    function rotateImages() {
+      images[currentImageIndex].classList.remove('active');
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      images[currentImageIndex].classList.add('active');
+    }
+
+    setInterval(rotateImages, 4000);
+  </script>
 </body>
 </html>
