@@ -2,10 +2,12 @@
    Mrisho Gambo Secondary School — Shared Styles
    Design system: exercise-book ruled margins, brass gold + deep
    indigo, Space Grotesk headings over Source Sans body copy.
+   Includes responsive auto-dark-mode via prefers-color-scheme.
    ================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;1,8..60,500&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
+/* ── Light (default) ─────────────────────────────────────── */
 :root {
   /* Color */
   --ink: #14213b;
@@ -41,6 +43,47 @@
   --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
 }
 
+/* ── Dark mode (auto-detect) ─────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8edf4;
+    --indigo: #3a7bd5;
+    --indigo-deep: #2556a0;
+    --gold: #e3a63e;
+    --gold-deep: #f0be5e;
+    --leaf: #3db87c;
+    --leaf-deep: #2f7a56;
+    --paper: #0d1117;
+    --panel: #161b28;
+    --panel-deep: #1c2333;
+    --line: #283143;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 26px 60px -18px rgba(0, 0, 0, 0.6);
+  }
+
+  .site-header {
+    background: var(--indigo-deep);
+  }
+
+  .site-header h1 {
+    color: var(--paper);
+  }
+
+  .modal {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.3);
+  }
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -60,7 +103,7 @@ body {
   flex-direction: column;
 }
 
-img { max-width: 100%; height: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 a { color: var(--indigo); text-decoration: none; transition: color var(--speed) var(--ease); }
 a:hover { color: var(--gold-deep); }
@@ -100,14 +143,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weigh
 .site-header {
   position: relative;
   background: var(--indigo);
-  color: var(--white, #fff);
+  color: #fff;
   padding: 1.5rem 1.5rem 0;
   text-align: center;
   overflow: hidden;
   isolation: isolate;
 }
 
-/* Exercise-book ruled-paper texture + margin line — the site's signature motif */
+/* Exercise-book ruled-paper texture + margin line */
 .site-header::before {
   content: "";
   position: absolute;
@@ -382,6 +425,16 @@ hr {
 
 .content-list li strong { color: var(--indigo); font-family: var(--font-display); }
 
+.content-list a {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+}
+
+.content-list a:hover {
+  text-decoration-thickness: 2px;
+}
+
 /* ========== TABLES ========== */
 .table-wrap {
   overflow-x: auto;
@@ -412,6 +465,12 @@ tr:hover { background: var(--panel-deep); }
 
 td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color: var(--ink); }
 
+/* Strong rows stand out */
+tr td strong {
+  color: var(--indigo-deep);
+  background: var(--panel-deep);
+}
+
 /* ========== PROFILE / FLIP CARDS ========== */
 .profile-row {
   display: flex;
@@ -427,7 +486,6 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 .profile-text { flex: 1; min-width: 260px; }
 .profile-text p { color: var(--text-muted); line-height: 1.75; }
 
-/* Leadership portrait — static, no interaction required to read it */
 .person-card {
   width: 190px;
   flex-shrink: 0;
@@ -446,7 +504,7 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 
 .person-card h3 { font-size: 1.05rem; color: var(--ink); margin-bottom: 0.2rem; }
 
-.person-card .person-role {
+.person-role {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -455,7 +513,7 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   color: var(--gold-deep);
 }
 
-/* Department cards — subject header strip + head-of-department row, always visible */
+/* Department cards */
 .dept-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -484,7 +542,6 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   background: var(--indigo);
 }
 
-/* Rotate a harmonious 6-color set across department cards instead of arbitrary inline colors */
 .dept-card:nth-of-type(6n+1) .dept-top { background: var(--indigo); }
 .dept-card:nth-of-type(6n+2) .dept-top { background: var(--leaf); }
 .dept-card:nth-of-type(6n+3) .dept-top { background: var(--gold-deep); }
@@ -506,6 +563,7 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   object-fit: cover;
   flex-shrink: 0;
   border: 2px solid var(--panel);
+  background: var(--panel);
 }
 
 .dept-body h3 { font-size: 0.94rem; color: var(--ink); margin-bottom: 0.15rem; }
@@ -538,13 +596,8 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 
 .teacher-card h3 { color: var(--ink); font-size: 1.2rem; margin-bottom: 0.2rem; }
 
-.teacher-card .role {
-  font-family: var(--font-mono); color: var(--gold-deep); font-weight: 600;
-  margin-bottom: 0.85rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-}
-
-.teacher-card .contact-info { font-size: 0.9rem; color: var(--text-muted); }
-.teacher-card .contact-info a { color: var(--indigo); }
+.contact-info { font-size: 0.9rem; color: var(--text-muted); }
+.contact-info a { color: var(--indigo); }
 
 /* Contact form */
 .contact-form {
@@ -562,14 +615,16 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   font-size: 0.85rem; color: var(--ink); font-family: var(--font-display);
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
   width: 100%; padding: 0.75rem 1rem; margin-bottom: 1.1rem;
   border: 1px solid var(--line); border-radius: var(--radius-sm);
   font-size: 1rem; font-family: var(--font-body); background: var(--paper);
   transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
   outline: none; border-color: var(--indigo);
   box-shadow: 0 0 0 3px rgba(27, 58, 99, 0.14);
 }
@@ -630,9 +685,10 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   background: var(--indigo); color: var(--paper); border: none; padding: 0.6rem 1.5rem;
   border-radius: var(--radius-sm); font-family: var(--font-display); font-weight: 600;
   cursor: pointer; margin-top: 0.75rem; font-size: 0.92rem;
+  transition: background var(--speed) var(--ease), transform var(--speed) var(--ease);
 }
 
-.close-btn:hover { background: var(--indigo-deep); }
+.close-btn:hover { background: var(--indigo-deep); transform: translateY(-1px); }
 
 /* ========== NOTES / MATERIALS ========== */
 .materials-grid {
@@ -806,7 +862,7 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 .slide .overlay h1 { font-size: 1.8rem; margin-bottom: 0.4rem; color: var(--paper); }
 .slide .overlay p { font-size: 1.05rem; opacity: 0.95; }
 
-/* ========== TIMELINE (achievements) ========== */
+/* Timeline (achievements) */
 .timeline {
   list-style: none;
   max-width: 720px;
@@ -904,7 +960,7 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 }
 
 @media (max-width: 768px) {
-  body { font-size: 16px; /* prevent iOS zoom on inputs, improve readability */ }
+  body { font-size: 16px; }
 
   .site-header { padding: 1.1rem 1rem 0; }
   .site-header h1 { font-size: 1.25rem; line-height: 1.25; }
@@ -934,7 +990,6 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
 
   .map-container iframe { height: 260px; }
 
-  /* Tables: keep scrollable, improve touch */
   .table-wrap {
     margin: 1rem -0.25rem;
     border-radius: var(--radius-sm);
@@ -946,7 +1001,6 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   }
   td:first-child { white-space: normal; min-width: 110px; }
 
-  /* Cards & grids tighter */
   .card-grid, .dept-grid, .materials-grid, .contact-grid, .news-list {
     gap: 1rem;
   }
@@ -956,38 +1010,30 @@ td:first-child { text-align: left; font-weight: 600; white-space: nowrap; color:
   .dept-body { padding: 0.8rem; gap: 0.65rem; }
   .dept-avatar { width: 42px; height: 42px; }
 
-  /* Buttons: larger touch targets */
   .btn {
     min-height: 44px;
     padding: 0.7rem 1.25rem;
   }
 
-  /* Forms */
   .contact-form { padding: 1.5rem 1.15rem; margin: 1.5rem auto; }
   .contact-form input,
   .contact-form textarea {
-    font-size: 16px; /* prevent iOS zoom */
+    font-size: 16px;
     padding: 0.8rem 0.9rem;
   }
 
-  /* Lists */
   .content-list li { padding: 0.85rem 1rem; font-size: 0.95rem; }
 
-  /* Motto */
   .motto { font-size: 1.3rem; margin-bottom: 1.75rem; }
 
-  /* Stat strip */
   .stat-strip .stat { padding: 1.1rem 0.6rem; }
   .stat .stat-num { font-size: 1.4rem; }
   .stat .stat-label { font-size: 0.72rem; }
 
-  /* Bulletin */
   .notifications-box, .events-box { padding: 1.25rem 1.15rem; }
 
-  /* Icon panels */
   .icon-panel { padding: 1.5rem 1.25rem; }
 
-  /* Modal */
   .modal { padding: 1rem 0.75rem; }
   .modal-content { padding: 1.35rem 1.1rem; margin: 1rem auto; max-height: 90vh; }
 }
