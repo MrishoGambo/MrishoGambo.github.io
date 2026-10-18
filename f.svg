@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#14213b"/>
+  <rect x="200" y="100" width="400" height="250" rx="10" fill="none" stroke="#e3a63e" stroke-width="4"/>
+  <circle cx="400" cy="200" r="35" fill="#e3a63e" opacity="0.3"/>
+  <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="18" opacity="0.7">School Image</text>
+</svg>
