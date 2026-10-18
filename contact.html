@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R5R839RP5G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R5R839RP5G');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Mrisho Gambo Secondary School</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="analytics.js"></script>
 </head>
 <body>
 
@@ -21,7 +14,7 @@
     <div class="header-inner">
       <img src="school-logo.jpg" alt="Mrisho Gambo Secondary School Logo" class="school-logo">
       <h1>Mrisho Gambo Secondary School</h1>
-      <p class="tagline">Educate • Inspire • Innovate</p>
+      <p class="tagline">Educate &bull; Inspire &bull; Innovate</p>
     </div>
   </header>
 
@@ -47,21 +40,21 @@
   <main>
     <span class="eyebrow text-center">Get Fast Service</span>
     <h1 class="page-title">Contact Us</h1>
-    <p class="page-subtitle">Get in touch with our high administrators.</p>
+    <p class="page-subtitle">Get in touch with our school administrators.</p>
 
     <div class="contact-grid">
       <div class="teacher-card">
-        <img loading="lazy" src="fungo.png" alt="Riziki Fungo">
+        <img loading="lazy" src="fungo.png" alt="Riziki Fungo" class="person-photo">
         <h3>Riziki Fungo</h3>
         <p class="role">Head Master</p>
         <div class="contact-info">
           <p>Email: <a href="mailto:rizikifungo@gmail.com">rizikifungo@gmail.com</a></p>
-          <p>Phone: <a href="tel:+255764510592">+255 764510592</a></p>
+          <p>Phone: <a href="tel:+255764510592">+255 764 510 592</a></p>
         </div>
       </div>
 
       <div class="teacher-card">
-        <img loading="lazy" src="lomitu.png" alt="Lomitu">
+        <img loading="lazy" src="lomitu.png" alt="Lomitu" class="person-photo">
         <h3>Lomitu</h3>
         <p class="role">Deputy Headmaster</p>
         <div class="contact-info">
@@ -71,12 +64,12 @@
       </div>
 
       <div class="teacher-card">
-        <img loading="lazy" src="mollel.png" alt="Mollel">
+        <img loading="lazy" src="mollel.png" alt="Mollel" class="person-photo">
         <h3>Mollel</h3>
         <p class="role">Academic Master</p>
         <div class="contact-info">
           <p>Email: <a href="mailto:mollel@gmail.com">mollel@gmail.com</a></p>
-          <p>Phone: <a href="tel:+255674370948">+255674370948</a></p>
+          <p>Phone: <a href="tel:+255674370948">+255 674 370 948</a></p>
         </div>
       </div>
     </div>
@@ -96,15 +89,26 @@
 
     <div class="contact-form">
       <h2>Send Us a Message</h2>
-      <form action="#" method="post">
+      <!-- 
+        NOTE: For the contact form to work on GitHub Pages (static hosting),
+        you need to either:
+        1. Replace '#' with a Formspree endpoint: https://formspree.io/f/YOUR_ID
+           (sign up at https://formspree.io — free)
+        2. Or use Netlify Forms if hosted there.
+        
+        Current setup: form submits nowhere (action="#").
+        Uncomment the line below and add your Formspree ID:
+      -->
+      <!-- <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST"> -->
+      <form action="#" method="POST">
         <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Full name" required>
+        <input type="text" id="name" name="name" placeholder="Full name" required autocomplete="name">
 
         <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+        <input type="email" id="email" name="email" placeholder="email@example.com" required autocomplete="email">
 
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="+255 ..." required>
+        <input type="tel" id="phone" name="phone" placeholder="+255 ..." autocomplete="tel">
 
         <label for="message">Your Message</label>
         <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
